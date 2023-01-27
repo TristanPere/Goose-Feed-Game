@@ -5,6 +5,7 @@ body{
     justify-content: space-between;
     // background: linear-gradient(0deg, rgba(35,159,139,1) 0%, rgba(29,0,255,1) 100%);
 }
+ 
 
 .title-bar{
     display: flex;
@@ -29,8 +30,10 @@ body{
 }
 
 .goose{
+    
     display: inline-block;
     &__button{
+        cursor: crosshair;
         width: 75px;
         height: 75px;
     }

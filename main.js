@@ -1,6 +1,6 @@
 const gallery = document.querySelector(".gallery");
 const restartButton = document.querySelector(".title-bar__re-start");
-
+const score = document.querySelector(".title-bar__score")
 const gooseHTML = (idNum) => {
   const innerHTML = `<div class="goose" id="goose${idNum}">
     <input class="goose__button" type="image" src="goose.png" value="${idNum}">
@@ -44,13 +44,20 @@ const handleRestart = () => {
     }
   };
   positionGeese();
+
   const handleFeeding = (event) => {
     gooseArr[event.target.value].remove(); //changing galleryDiv but not changing gooseArry
     fedCount += 1;
+    score.innerText = `Geese Fed:${fedCount}`
   };
+
   gooseButtonArr.forEach((gooseButton) => {
     gooseButton.addEventListener("click", handleFeeding);
   });
+
+
+
+
 };
 
 restartButton.addEventListener("click", handleRestart);
