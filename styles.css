@@ -11,9 +11,11 @@ body {
   width: 700px;
   border: 1px solid black;
   margin-top: 3%;
+  position: initial;
 }
 
 .gallery {
+  position: relative;
   margin-top: 3%;
   height: 500px;
   width: 700px;
@@ -23,7 +25,7 @@ body {
 
 .goose {
   display: inline-block;
-  position: relative;
+  position: absolute;
 }
 .goose__button {
   width: 75px;

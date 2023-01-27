@@ -12,6 +12,7 @@ body{
     width: 700px;
     border: 1px solid black;
     margin-top: 3%;
+    position: initial;
     // &__header{
     // }
     // &__re-start{
@@ -19,6 +20,7 @@ body{
 }
 
 .gallery{
+    position: relative;
     margin-top: 3% ;
     height: 500px;
     width: 700px;
@@ -32,6 +34,6 @@ body{
         width: 75px;
         height: 75px;
     }
-    position: relative;
+    position: absolute;
 }
 
