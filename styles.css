@@ -24,7 +24,7 @@ body {
 }
 
 .goose {
-  display: inline-block;
+  display: none;
   position: absolute;
 }
 .goose__button {

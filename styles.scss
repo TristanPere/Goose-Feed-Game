@@ -31,7 +31,8 @@ body{
 
 .goose{
     
-    display: inline-block;
+    // display: inline-block;
+    display: none;
     &__button{
         cursor: crosshair;
         width: 75px;
