@@ -1,22 +1,27 @@
 body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas: "title-bar title-bar title-bar" "level-select gallery gallery";
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 5fr;
   align-items: center;
-  justify-content: space-between;
+  justify-items: center;
+  padding-bottom: 50px;
 }
 
 .title-bar {
+  grid-area: title-bar;
   display: flex;
   justify-content: space-evenly;
+  justify-self: center;
   width: 700px;
   border: 1px solid black;
-  margin-top: 3%;
   position: initial;
 }
 
 .gallery {
+  grid-area: gallery;
   position: relative;
-  margin-top: 3%;
+  margin-top: 21px;
   height: 500px;
   width: 700px;
   border: 1px solid black;
@@ -31,4 +36,13 @@ body {
   cursor: crosshair;
   width: 75px;
   height: 75px;
+}
+
+.level-select {
+  position: relative;
+  margin-top: 21px;
+  grid-area: level-select;
+  height: 500px;
+  width: 200px;
+  border: 1px solid black;
 }/*# sourceMappingURL=styles.css.map */
