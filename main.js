@@ -97,6 +97,12 @@ const handleRound = (event) => {
     let lostGeese = 0;
     positionGeese(gooseArr);
 
+
+
+
+
+
+    
     // moves the geese on screen into place
     countDownTimer(roundLength);
     const handleFeeding = (event) => {
@@ -142,7 +148,9 @@ const handleRound = (event) => {
       if (fedCount >= numberOfGeese / 2) {
         // levelSelectButtons[event.target.value].addEventListener("click", handleRound);
         levelButtonsHTML[event.target.value].style.backgroundColor = "white";
-        highestAvailableRounds += 1;
+        if (highestAvailableRounds == event.target.value) {
+          highestAvailableRounds += 1;
+        }
       }
     }, roundLength);
   } else {
@@ -166,7 +174,7 @@ const handleRestart = (event) => {
   // levelButtonsHTML[0].style.backgroundColor = "white";
 
   // handleRound(event);
-  location.reload()
+  location.reload();
 };
 levelButtonsHTML[0].style.backgroundColor = "white";
 
