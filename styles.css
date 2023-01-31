@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   justify-self: center;
-  width: 700px;
+  width: 1210px;
   border: 1px solid black;
   position: initial;
 }
@@ -45,4 +45,25 @@ body {
   height: 500px;
   width: 200px;
   border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.level {
+  width: 50%;
+  height: 20%;
+}
+.level__button {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(58, 58, 58);
+}
+
+.mode {
+  border: 1px solid black;
+}
+.mode--endless {
+  width: 200px;
+  height: 100px;
 }/*# sourceMappingURL=styles.css.map */

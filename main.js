@@ -2,6 +2,7 @@ const gallery = document.querySelector(".gallery");
 const restartButton = document.querySelector(".title-bar__re-start");
 const score = document.querySelector(".title-bar__score");
 const levelSelect = document.querySelector(".level-select");
+const roundTimer = document.querySelector(".round-timer");
 
 const LevelSelectHTML = (idNum) => {
   const innerHTML = `<div class="level" id="level${idNum}">
@@ -16,6 +17,7 @@ const populateLevelSelectDiv = () => {
 };
 populateLevelSelectDiv();
 const levelSelectButtons = document.querySelectorAll(".level");
+const levelButtonsHTML = document.querySelectorAll(".level__button");
 
 // writes the div for each goose giving it a unique id
 const gooseHTML = (idNum) => {
@@ -58,65 +60,108 @@ const positionGeese = (gooseArr) => {
   }
 };
 
+const countDownTimer = (amountOfTime) => {
+  let sec = amountOfTime/1000;
+  let timer = setInterval(() => {
+    roundTimer.innerHTML = `00:${sec} seconds left`;
+    sec--; 
+  }, 1000);
+  setTimeout(()=>{clearInterval(timer)}, amountOfTime+1000);
+};
+
 // all functions to occur in a round are store in here so can be called when a round button is clicked
+let highestAvailableRounds = 1;
 const handleRound = (event) => {
   // packaged handleRestart into handle a round with input of numberOfGeese and round number to determine speed of geese appearing
-  const roundNumber = event.target.value;
-  const numberOfGeese = 10 * (1.3 * roundNumber);
-  // console.log(roundNumber)
-  let fedCount = 0;
-  // const numberOfGeese = 20;
-  const idArr = [...Array(numberOfGeese).keys()]; // idArr is the number of geese on screen in a round
-  gallery.innerHTML = "";
-  hatchGeese(idArr);
+  if (event.target.value <= highestAvailableRounds) {
+    const roundNumber = event.target.value;
+    const numberOfGeese = 10 * (1.3 * roundNumber);
+    // console.log(roundNumber)
+    let fedCount = 0;
+    // const numberOfGeese = 20;
+    const idArr = [...Array(numberOfGeese).keys()]; // idArr is the number of geese on screen in a round
+    gallery.innerHTML = "";
+    hatchGeese(idArr);
 
-  const gooseArr = document.querySelectorAll(".goose");
-  const gooseButtonArr = document.querySelectorAll(".goose__button");
-  let hatchedGeese = 0;
-  let lostGeese = 0;
-  // moves the geese on screen into place
-  positionGeese(gooseArr);
+    const gooseArr = document.querySelectorAll(".goose");
+    const gooseButtonArr = document.querySelectorAll(".goose__button");
+    let hatchedGeese = 0;
+    let lostGeese = 0;
+    // moves the geese on screen into place
+    positionGeese(gooseArr);
 
-  const handleFeeding = (event) => {
-    gooseArr[event.target.value].style.display = "none"; //no longer changing galleryDiv. instead just disappearing the geese
-    fedCount += 1;
-    score.innerText = `Geese Fed:${fedCount}`;
-  };
+    const handleFeeding = (event) => {
+      gooseArr[event.target.value].style.display = "none"; //no longer changing galleryDiv. instead just disappearing the geese
+      fedCount += 1;
+      score.innerText = `Geese Fed:${fedCount}/${numberOfGeese}`;
+    };
 
-  gooseButtonArr.forEach((gooseButton) => {
-    gooseButton.addEventListener("click", handleFeeding);
+    gooseButtonArr.forEach((gooseButton) => {
+      gooseButton.addEventListener("click", handleFeeding);
+    });
+  
+
+    //This function:
+    //Adds geese in order of their id
+    //Counts the number of loops and clears interval when number of loops is equal to number of geese
+    const gooseHatchTimed = () => {
+      if (hatchedGeese === gooseArr.length) {
+        clearInterval(gooseHatchInterval);
+      } else {
+        gooseArr[hatchedGeese].style.display = "inline-block"; // changing display from none to inline
+        hatchedGeese += 1;
+      }
+    };
+
+    //This function:
+    //Removes geese in order of their id
+    //Counts the number of loops and clears interval when number of loops is equal to number of geese
+    const gooseLooseTimed = () => {
+      if (lostGeese === gooseArr.length) {
+        clearInterval(gooseLooseInterval);
+      } else {
+        gooseArr[lostGeese].style.display = "none";
+        lostGeese += 1;
+      }
+    };
+
+    const spawnSpeed = (1000 * 1) / (0.5 * roundNumber);
+    const lifeTime = 3 * spawnSpeed;
+    const roundLength = spawnSpeed * numberOfGeese + lifeTime;
+    countDownTimer(roundLength)
+    gooseHatchInterval = setInterval(gooseHatchTimed, spawnSpeed);
+    setTimeout(() => {
+      gooseLooseInterval = setInterval(gooseLooseTimed, spawnSpeed);
+    }, lifeTime); // Adds lifetime delay onto despawning of each goose
+
+    
+
+    // After a round is complete it checks if number of geese fed are greater than 50% if so next level is unlocked.
+    setTimeout(() => {
+      if (fedCount >= numberOfGeese / 2) {
+        // levelSelectButtons[event.target.value].addEventListener("click", handleRound);
+        levelButtonsHTML[event.target.value].style.backgroundColor = "white";
+        highestAvailableRounds +=1
+      }
+    }, roundLength);
+  } else {
+    alert(`Must feed 50% of geese from level ${event.target.value - 1}`);
+  }
+};
+
+const handleRestart = () => {
+  highestAvailableRounds = 1;
+  levelButtonsHTML.forEach((buttonHTML) => {
+    buttonHTML.style.backgroundColor = "rgb(58, 58, 58)";
   });
-
-  const gooseHatchTimed = () => {
-    if (hatchedGeese === gooseArr.length) {
-      clearInterval(gooseHatchInterval);
-    } else {
-      gooseArr[hatchedGeese].style.display = "inline-block"; // changing display from none to inline
-      hatchedGeese += 1;
-    }
-  };
-  const gooseLooseTimed = () => {
-    if (lostGeese === gooseArr.length) {
-      clearInterval(gooseLooseInterval);
-    } else {
-      gooseArr[lostGeese].style.display = "none";
-      lostGeese += 1;
-    }
-  };
-  const spawnSpeed = (1000 * 1) / (0.5 * roundNumber);
-  const lifeTime = 3 * spawnSpeed;
-  gooseHatchInterval = setInterval(gooseHatchTimed, spawnSpeed);
-  setTimeout(() => {
-    gooseLooseInterval = setInterval(gooseLooseTimed, spawnSpeed);
-  }, lifeTime); // Adds 3.2s delay onto despawning of each goose
+  levelButtonsHTML[0].style.backgroundColor = "white";
+  handleRound(1)
 };
-
-const handleRestart = (event) => {
-  handleRound(event);
-};
+levelButtonsHTML[0].style.backgroundColor = "white";
 
 levelSelectButtons.forEach((levelButton) => {
   levelButton.addEventListener("click", handleRound);
 });
-
+// countDownTimer(10000)
+// console.log(roundTimer)
 restartButton.addEventListener("click", handleRestart);
