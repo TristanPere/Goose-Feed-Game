@@ -7,9 +7,18 @@ const currentRound = document.querySelector("#current-round");
 const endlessRound = document.querySelector("#endless-level");
 const dropdown = document.querySelector("#gamemode-select");
 const currentModeTitle = document.querySelector(".current-mode__title");
+const instructionsButton = document.querySelector(".title-bar__intructions")
+const instructionsExitButton = document.querySelector(".overlay__button")
+const instructions = document.querySelector(".overlay")
 let highestAvailableRounds = 1;
 let highestAvailableFlyingRounds = 1;
 let levelActive = false;
+instructionsButton.addEventListener("click",()=> {
+  instructions.style.display = "block";
+})
+instructionsExitButton.addEventListener("click",() => {
+  instructions.style.display = "none";
+})
 const LevelSelectHTML = (idNum) => {
   const innerHTML = `<div class="level" id="level${idNum}">
     <input class="level__button" type="button" value="${idNum}">
@@ -372,4 +381,7 @@ const handleModeSelect = (event) => {
 dropdown.addEventListener("click", handleModeSelect);
 restartButton.addEventListener("click", handleRestart);
 
-// endlessRound.addEventListener("click", handleFlyingRound);
+
+
+
+// endlessRound.addEventListener("click", handleEndless);

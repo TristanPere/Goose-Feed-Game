@@ -19,17 +19,18 @@
     <div id="current-round">Current Round:</div>
     <div id="round-timer">Round Timer: 00:00s</div>
     <div>
-    <label for="gamemode-select">Choose a mode:</label>
-    <select name="gamemode-select" id="gamemode-select">
-      <option value="Standard">Standard</option>
-      <option value="Flying">Flying</option>
-      <option value="Endless">Endless</option>
-    </select>
+      <label for="gamemode-select">Choose a mode:</label>
+      <select name="gamemode-select" id="gamemode-select">
+        <option value="Standard">Standard</option>
+        <option value="Flying">Flying</option>
+        <option value="Endless">Endless</option>
+      </select>
     </div>
+    <button class="title-bar__intructions">Instructions</button>
   </div>
 
   <div class="current-mode">
-    
+
     <div class="current-mode__title">
       Current Mode:
     </div>
@@ -37,15 +38,36 @@
     <div class="current-mode__level-select">
     </div>
     <div class="current-mode__endless-mode" id="endless-level">
-        <input class="current-mode__endless-mode__button" type="button" value="Endless">
+      <input class="current-mode__endless-mode__button" type="button" value="Endless">
     </div>
   </div>
 
- 
+
 
   <div class="gallery">
   </div>
 
+
+  <div class="overlay">
+    <div class="overlay__text">
+      <button class="overlay__button">X</button>
+      The Goose Feeding Game:
+      <p>
+        There are currently two modes: </br>
+        <span style="font-size:16px"></span><strong>Standard</strong> & <strong>Flying</strong></span> </br>
+        <span style="font-size:16px"></span><strong>Standard</strong></span> mode has geese appearing at a set interval
+        at random places on the screen. </br>
+        <span style="font-size:16px"></span><strong>Flying</strong></span> mode has geese spawn at the bottom center of
+        the screen and move to the edges following random trajectories. </br>
+        The <span style="font-size:16px"></span><strong>Main Objective</strong></span> is to <span
+          style="font-size:16px"></span><strong>Feed The Geese</strong></span>. When a level is over and 50% of the
+        geese have been fed the next level in that mode unlocks and is playable. </br>
+        Each mode has 10 levels with each level getting progressively harder. Good luck!!
+      </p>
+    </div>
+
+  </div>
+  </div>
 </body>
 
 </html>

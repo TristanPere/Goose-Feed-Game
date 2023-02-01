@@ -75,4 +75,42 @@ body {
   cursor: crosshair;
   width: 75px;
   height: 75px;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+.overlay__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  border: 1px solid black;
+  background-color: rgba(90, 90, 90, 0.541);
+  padding: 10px;
+}
+.overlay__text p {
+  font-size: 1rem;
+}
+.overlay__button {
+  position: absolute;
+  left: 95%;
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10px;
+  cursor: pointer;
 }/*# sourceMappingURL=styles.css.map */
