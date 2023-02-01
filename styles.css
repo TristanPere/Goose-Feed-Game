@@ -1,6 +1,6 @@
 body {
   display: grid;
-  grid-template-areas: "title-bar title-bar title-bar" "level-select gallery gallery";
+  grid-template-areas: "title-bar title-bar title-bar" "current-mode gallery gallery";
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 5fr;
   align-items: center;
@@ -28,28 +28,6 @@ body {
   background: linear-gradient(0deg, rgb(35, 159, 139) 0%, rgb(29, 0, 255) 100%);
 }
 
-.goose {
-  display: none;
-  position: absolute;
-}
-.goose__button {
-  cursor: crosshair;
-  width: 75px;
-  height: 75px;
-}
-
-.level-select {
-  position: relative;
-  margin-top: 21px;
-  grid-area: level-select;
-  height: 500px;
-  width: 200px;
-  border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .level {
   width: 50%;
   height: 20%;
@@ -60,10 +38,42 @@ body {
   background-color: rgb(58, 58, 58);
 }
 
+.current-mode {
+  grid-area: current-mode;
+  display: flex;
+  flex-direction: column;
+}
+.current-mode__level-select {
+  position: relative;
+  margin-top: 21px;
+  height: 400px;
+  width: 200px;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.current-mode__title {
+  grid-area: title;
+  overflow-wrap: break-word;
+}
+
 .mode {
+  grid-area: mode;
+  display: none;
   border: 1px solid black;
 }
 .mode--endless {
   width: 200px;
   height: 100px;
+}
+
+.goose {
+  display: none;
+  position: absolute;
+}
+.goose__button {
+  cursor: crosshair;
+  width: 75px;
+  height: 75px;
 }/*# sourceMappingURL=styles.css.map */

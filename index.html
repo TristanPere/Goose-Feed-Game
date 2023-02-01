@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Goose Feed Game</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="main.js" defer></script>
-  </head>
-  <body>
 
-    <div class="title-bar">
-      <button class="title-bar__re-start" value="1">Reset Game</button>
-      <header class="title-bar__header">Goose Feed Game</header>
-      <a class="title-bar__score">Geese Fed:</a>
-      <div id="current-round">Current Round:</div>
-      <div id="round-timer">Round Timer: 00:00s</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goose Feed Game</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+
+  <div class="title-bar">
+    <button class="title-bar__re-start" value="1">Reset Game</button>
+    <header class="title-bar__header">Goose Feed Game</header>
+    <a class="title-bar__score">Geese Fed:</a>
+    <div id="current-round">Current Round:</div>
+    <div id="round-timer">Round Timer: 00:00s</div>
+    <div>
+    <label for="gamemode-select">Choose a mode:</label>
+    <select name="gamemode-select" id="gamemode-select">
+      <option value="Standard">Standard</option>
+      <option value="Flying">Flying</option>
+      <option value="Endless">Endless</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="current-mode">
+    
+    <div class="current-mode__title">
+      Current Mode:
     </div>
 
-    <div class="level-select"> <!--div of buttons for level select 0 - endless-->
-      
+    <div class="current-mode__level-select">
     </div>
 
-    <div class="mode" id="endless-level">
-      <input class="mode--endless"  type="button" value="Endless"> 
-      </div>
+  </div>
 
-    <div class="gallery">
-    </div>
+  <div class="mode" id="endless-level">
+    <input class="mode--endless" type="button" value="Endless">
+  </div>
 
-  </body>
+  <div class="gallery">
+  </div>
+
+</body>
+
 </html>
