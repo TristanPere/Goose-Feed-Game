@@ -4,7 +4,8 @@ const score = document.querySelector(".title-bar__score");
 const levelSelect = document.querySelector(".level-select");
 const roundTimer = document.querySelector("#round-timer");
 const currentRound = document.querySelector("#current-round");
-let highestAvailableRounds = 1;
+const endlessRound = document.querySelector("#endless-level")
+let highestAvailableRounds = 10;
 
 const LevelSelectHTML = (idNum) => {
   const innerHTML = `<div class="level" id="level${idNum}">
@@ -61,6 +62,13 @@ const positionGeese = (gooseArr) => {
     gooseArr[i].style.top = positionArr[i][1] + "px";
   }
 };
+//Centre's geese before being launched
+const centreGeese = () =>{
+  for (let i = 0; i < gooseArr.length; i++) {
+    gooseArr[i].style.top = (gallery.clientHeight-75) +"px";
+    gooseArr[i].style.left = ((gallery.clientWidth-75)/2) +"px";
+  }
+};
 
 const countDownTimer = (amountOfTime) => {
   let sec = Math.floor(amountOfTime / 1000);
@@ -97,12 +105,6 @@ const handleRound = (event) => {
     let lostGeese = 0;
     positionGeese(gooseArr);
 
-
-
-
-
-
-    
     // moves the geese on screen into place
     countDownTimer(roundLength);
     const handleFeeding = (event) => {
@@ -162,6 +164,111 @@ const handleRound = (event) => {
   }
 };
 
+const handleFlyingRound = (event) => {
+  // packaged handleRestart into handle a round with input of numberOfGeese and round number to determine speed of geese appearing
+    const roundNumber = 1;
+    const numberOfGeese = Math.floor(10 * (1.5 * roundNumber));
+    const idArr = [];
+    for (let i = 0; i < numberOfGeese; i++) {
+      idArr.push(i);
+    }
+    const spawnSpeed = (1000 * 1) / (0.5 * roundNumber);
+    const lifeTime = 3 * spawnSpeed;
+    const roundLength = spawnSpeed * numberOfGeese + lifeTime;
+    let fedCount = 0;
+    gallery.innerHTML = "";
+    currentRound.innerHTML = `Current Round: ${event.target.value}`;
+    hatchGeese(idArr);
+
+    const gooseArr = document.querySelectorAll(".goose");
+    const gooseButtonArr = document.querySelectorAll(".goose__button");
+    let hatchedGeese = 0;
+    let lostGeese = 0;
+    // moves the geese on screen into place
+    // positionGeese(gooseArr);
+
+    // countDownTimer(roundLength);
+
+    const handleFeeding = (event) => {
+      gooseArr[event.target.value].style.display = "none";
+      fedCount += 1;
+      score.innerText = `Geese Fed:${fedCount}/${numberOfGeese}`;
+    };
+    gooseButtonArr.forEach((gooseButton) => {
+      gooseButton.addEventListener("click", handleFeeding);
+    });
+
+    let animation = [];
+    const moveGoose = (goose,speed,id) => { //load in goose and its relative speeds [0]=dx,[1]=dy
+      let xpos = ((gallery.clientWidth-75)/2) /speed[0]; //initial position
+      let ypos = (gallery.clientHeight-75)  /speed[1];
+      clearInterval(animation[id]);
+      const frame = () => {
+        if ((ypos < 0||xpos > (gallery.clientWidth-75)/speed[0])) {
+          clearInterval(animation[id]);
+        } else {
+          xpos++; //xpos--; moves it left
+          ypos--;
+          goose.style.left = speed[0]*xpos + "px"; // moves one pixel right every frame
+          goose.style.top = speed[1]*ypos + "px"; //moves one pixel down every frame
+        }
+      };
+      animation[id] = setInterval(frame, 1);
+    };
+    // gooseArr[1].style.top = (gallery.clientHeight-75) +"px";
+    // gooseArr[1].style.left = ((gallery.clientWidth-75)/2) +"px";
+    // gooseArr[1].style.display = "inline-block"
+    // moveGoose(gooseArr[1],[9,2],1)
+    // gooseArr[2].style.top = (gallery.clientHeight-75) +"px";
+    // gooseArr[2].style.left = ((gallery.clientWidth/2)-75) +"px";
+    // gooseArr[2].style.display = "inline-block"
+    // moveGoose(gooseArr[2],[2,3],2)
+
+    
+    //This function:
+    //Adds geese in order of their id
+    //Counts the number of loops and clears interval when number of loops is equal to number of geese
+    const gooseHatchTimed = () => {
+      if (hatchedGeese === gooseArr.length) {
+        clearInterval(gooseHatchInterval);
+      } else {
+        gooseArr[hatchedGeese].style.display = "inline-block";
+        moveGoose(gooseArr[hatchedGeese],[1,1]) // changing display from none to inline
+        hatchedGeese += 1;
+      }
+    };
+
+    //This function:
+    //Removes geese in order of their id
+    //Counts the number of loops and clears interval when number of loops is equal to number of geese
+    // const gooseLooseTimed = () => {
+    //   if (lostGeese === gooseArr.length) {
+    //     clearInterval(gooseLooseInterval);
+    //   } else {
+    //     gooseArr[lostGeese].style.display = "none";
+    //     lostGeese += 1;
+    //   }
+    // };
+
+
+    gooseHatchInterval = setInterval(gooseHatchTimed, spawnSpeed);
+    setTimeout(() => {
+      gooseLooseInterval = setInterval(gooseLooseTimed, spawnSpeed);
+    }, lifeTime); // Adds lifetime delay onto despawning of each goose
+
+    // // After a round is complete it checks if number of geese fed are greater than 50% if so next level is unlocked.
+    // setTimeout(() => {
+    //   if (fedCount >= numberOfGeese / 2) {
+    //     // levelSelectButtons[event.target.value].addEventListener("click", handleRound);
+    //     levelButtonsHTML[event.target.value].style.backgroundColor = "white";
+    //     if (highestAvailableRounds == event.target.value) {
+    //       highestAvailableRounds += 1;
+    //     }
+    //   }
+    // }, roundLength);
+   
+};
+
 const handleRestart = (event) => {
   // highestAvailableRounds = 1;
   // score.innerText = `Geese Fed:`;
@@ -174,7 +281,8 @@ const handleRestart = (event) => {
   // levelButtonsHTML[0].style.backgroundColor = "white";
 
   // handleRound(event);
-  location.reload();
+  location.reload()
+    
 };
 levelButtonsHTML[0].style.backgroundColor = "white";
 
@@ -182,3 +290,6 @@ levelSelectButtons.forEach((levelButton) => {
   levelButton.addEventListener("click", handleRound);
 });
 restartButton.addEventListener("click", handleRestart);
+endlessRound.addEventListener("click", handleFlyingRound);
+
+
