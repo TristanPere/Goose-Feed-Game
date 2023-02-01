@@ -62,15 +62,14 @@ body {
     grid-area: title;
     overflow-wrap:break-word;
   }
-}
-
-.mode {
-  grid-area: mode;
-  display: none;
-  border: 1px solid black;
-  &--endless {
-    width: 200px;
-    height: 100px;
+  &__endless-mode {
+    grid-area: mode;
+    display: none;
+    border: 1px solid black;
+    &--endless {
+      width: 200px;
+      height: 100px;
+    }
   }
 }
 

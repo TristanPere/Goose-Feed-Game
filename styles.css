@@ -57,13 +57,12 @@ body {
   grid-area: title;
   overflow-wrap: break-word;
 }
-
-.mode {
+.current-mode__endless-mode {
   grid-area: mode;
   display: none;
   border: 1px solid black;
 }
-.mode--endless {
+.current-mode__endless-mode--endless {
   width: 200px;
   height: 100px;
 }
