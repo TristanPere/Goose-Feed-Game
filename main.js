@@ -9,10 +9,9 @@ const currentModeTitle = document.querySelector(".current-mode__title");
 const instructionsButton = document.querySelector(".title-bar__intructions");
 const instructionsExitButton = document.querySelector(".overlay__button");
 const instructions = document.querySelector(".overlay");
-const levelArea = document.querySelector(".current-mode")
+const body = document.querySelector("body")
 let highestAvailableRounds = 1;
 let highestAvailableFlyingRounds = 1;
-let eggCounter = 0;
 let levelActive = false;
 let gooseHatchInterval = [];
 let gooseLooseInterval = [];
@@ -321,21 +320,20 @@ const clearAllIntervals = () => {
   clearInterval(gooseLooseInterval);
   clearTimeout(gooseDelay);
   clearTimeout(roundEnding);
-}
+};
 const handleRestart = () => {
   highestAvailableRounds = 1;
   highestAvailableFlyingRounds = 1;
-  eggCounter = 0;
   score.innerText = `Geese Fed:`;
   currentRound.innerHTML = `Current Round:`;
   roundTimer.innerHTML = `Round Timer: 00:00s`;
-  gallery.innerHTML = ``
+  gallery.innerHTML = ``;
   levelButtonsHTML.forEach((buttonHTML) => {
     buttonHTML.style.backgroundColor = "rgb(58, 58, 58)";
   });
   levelButtonsHTML[0].style.backgroundColor = "white";
   instructions.style.display = "block";
-  clearAllIntervals()
+  clearAllIntervals();
 };
 
 const handleModeSelect = (event) => {
@@ -385,12 +383,4 @@ instructionsExitButton.addEventListener("click", () => {
   instructions.style.display = "none";
 });
 
-const easterAggagaga = (event) => {
-  if (eggCounter<10){
-    eggCounter++;
-  } else if (eggCounter==100){
-    levelArea.innerHTML += `<img src="https://media.tenor.com/83-dDMPaR5oAAAAi/goose-duck.gif" alt="Goose"</img>`
-    eggCounter++;
-  }
-}
-gallery.addEventListener("click", easterAggagaga)
+
