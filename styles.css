@@ -127,7 +127,6 @@ body {
   position: relative;
   margin-top: 21px;
   height: 100%;
-  width: 80%;
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
