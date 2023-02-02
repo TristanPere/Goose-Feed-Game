@@ -8,19 +8,19 @@
   <title>Goose Feed Game</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="main.js" defer></script>
+  <link rel="icon" href="https://media.tenor.com/83-dDMPaR5oAAAAi/goose-duck.gif">
 </head>
 
 <body>
-
   <div class="title-bar">
     <button class="title-bar__re-start" value="1">Reset Game</button>
     <header class="title-bar__header">Goose Feed Game</header>
     <a class="title-bar__score">Geese Fed:</a>
-    <div id="current-round">Current Round:</div>
-    <div id="round-timer">Round Timer: 00:00s</div>
+    <div class="title-bar__round" id="current-round">Current Round:</div>
+    <div class="title-bar__timer" id="round-timer">Round Timer: 00:00s</div>
     <div>
       <label for="gamemode-select">Choose a mode:</label>
-      <select name="gamemode-select" id="gamemode-select">
+      <select class="title-bar__select" name="gamemode-select" id="gamemode-select">
         <option value="Standard">Standard</option>
         <option value="Flying">Flying</option>
         <option value="Endless">Endless</option>
@@ -37,16 +37,13 @@
 
     <div class="current-mode__level-select">
     </div>
-    <div class="current-mode__endless-mode" id="endless-level">
-      <input class="current-mode__endless-mode__button" type="button" value="Endless">
-    </div>
+    
+
+
   </div>
-
-
 
   <div class="gallery">
   </div>
-
 
   <div class="overlay">
     <div class="overlay__text">

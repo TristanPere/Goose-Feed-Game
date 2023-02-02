@@ -1,0 +1,63 @@
+JAVASCRIPT
+
+const endlessRound = document.querySelector("#endless-level");
+
+const handleEndlessRound = () =>{
+  // Endless = Set interval(
+  //   if(miss 5 geese in a row endless ends and highscore is displayed) check is if score < total geese-5
+  //   Clear interval (endless)
+  //   Else {
+  //   Setinterval(()=>{increase round},100)
+  //   Create a goose html, += html into div, ensure it has its own id. 
+  //   Decide to random place it or launch it
+  //   When random place it attach lifetime
+  //   When random launch it attach velocity
+  //   },10)
+    
+  //   Each one will have its own attributes
+  //interval looking for failure check
+    const completionCheck = setInterval(()=>{
+      if(noGeeseMissed > 5){
+        clearInterval(endlessRound)
+        clearInterval(completionCheck)
+      }
+    },10)
+    let currentRound = 1; //starting round
+    const endlessRound = setInterval(()=>{
+      //   Create a goose html
+      hatchGeese([1])//hatches a goose
+      positionGeese()
+      //   Decide to random place it or launch it
+
+    })
+}
+
+else if (event.target.value == "Endless") {
+      currentModeTitle.innerHTML = `Current Mode: (Unavailable)`;
+      levelSelectButtons.forEach((levelButton) => {
+        levelButton.removeEventListener("click", handleFlyingRound);
+        levelButton.removeEventListener("click", handleRound);
+      });
+      }
+
+
+HTML
+
+    <div class="current-mode__endless-mode" id="endless-level">
+      <input class="current-mode__endless-mode--button" type="button" value="Endless">
+    </div>
+
+
+
+SCSS
+.current-mode{
+&__endless-mode {
+    grid-area: mode;
+    display: none;
+    border: 1px solid black;
+        &--endless {
+        width: 200px;
+        height: 100px;
+        }
+    }
+}

@@ -4,13 +4,13 @@ const score = document.querySelector(".title-bar__score");
 const levelSelect = document.querySelector(".current-mode__level-select");
 const roundTimer = document.querySelector("#round-timer");
 const currentRound = document.querySelector("#current-round");
-const endlessRound = document.querySelector("#endless-level");
+
 const dropdown = document.querySelector("#gamemode-select");
 const currentModeTitle = document.querySelector(".current-mode__title");
 const instructionsButton = document.querySelector(".title-bar__intructions")
 const instructionsExitButton = document.querySelector(".overlay__button")
 const instructions = document.querySelector(".overlay")
-let highestAvailableRounds = 1;
+let highestAvailableRounds = 11;
 let highestAvailableFlyingRounds = 1;
 let levelActive = false;
 instructionsButton.addEventListener("click",()=> {
@@ -37,7 +37,7 @@ const levelButtonsHTML = document.querySelectorAll(".level__button");
 // writes the div for each goose giving it a unique id
 const gooseHTML = (idNum) => {
   const innerHTML = `<div class="goose" id="goose${idNum}">
-    <input class="goose__button" type="image" src="/images/goose.png" value="${idNum}">
+    <input class="goose__button" type="image" src="https://media.tenor.com/VIuRdCA_41sAAAAi/goose-walk-goose.gif" value="${idNum}">
     </div>`;
   return innerHTML;
 };
@@ -124,6 +124,7 @@ const moveGoose = (goose, vector, id, direction) => {
         goose.style.top = vector[1] * ypos + "px"; //moves one pixel up every frame
       }
     } else if (direction[id] == 0) {
+      goose.style.transform = "scaleX(-1)";
       if (ypos < 0 || xpos < 0) {
         clearInterval(animation[id]);
         goose.style.display = "none";
@@ -171,7 +172,7 @@ const handleRound = (event) => {
       const handleFeeding = (event) => {
         gooseArr[event.target.value].style.display = "none";
         fedCount += 1;
-        score.innerText = `Geese Fed:${fedCount}/${numberOfGeese}`;
+        score.innerText = `Geese Fed: ${fedCount}/${numberOfGeese}`;
       };
       gooseButtonArr.forEach((gooseButton) => {
         gooseButton.addEventListener("click", handleFeeding);
@@ -211,7 +212,7 @@ const handleRound = (event) => {
         levelActive = false;
         if (fedCount >= numberOfGeese / 2) {
           // levelSelectButtons[event.target.value].addEventListener("click", handleRound);
-          levelButtonsHTML[event.target.value].style.backgroundColor = "white";
+          levelButtonsHTML[event.target.value].style.backgroundColor = "#FDFFBB";
           if (highestAvailableRounds == event.target.value) {
             highestAvailableRounds += 1;
           }
@@ -300,7 +301,7 @@ const handleFlyingRound = (event) => {
         levelActive = false;
         if (fedCount >= numberOfGeese / 2) {
           // levelSelectButtons[event.target.value].addEventListener("click", handleRound);
-          levelButtonsHTML[event.target.value].style.backgroundColor = "white";
+          levelButtonsHTML[event.target.value].style.backgroundColor = "#FDFFBB";
           if (highestAvailableRounds == event.target.value) {
             highestAvailableFlyingRounds += 1;
           }
@@ -331,14 +332,12 @@ const handleRestart = (event) => {
   location.reload();
 };
 
-levelButtonsHTML[0].style.backgroundColor = "white";
-
+levelButtonsHTML[0].style.backgroundColor = "#FDFFBB"
 //Initialise game with standard mode
 currentModeTitle.innerHTML = "Current Mode: Standard";
 levelSelectButtons.forEach((levelButton) => {
   levelButton.addEventListener("click", handleRound);
 });
-
 const handleModeSelect = (event) => {
   if (levelActive) {
     alert("Must complete level before exiting");
@@ -347,10 +346,10 @@ const handleModeSelect = (event) => {
     if (event.target.value == "Standard") {
       levelSelectButtons.forEach((levelButton) => {
         for(let i=0;i<highestAvailableRounds;i++){
-          levelButtonsHTML[i].style.backgroundColor = "white";
+          levelButtonsHTML[i].style.backgroundColor = "#FDFFBB";
         }
         for(let i=highestAvailableRounds;i<10;i++){
-          levelButtonsHTML[i].style.backgroundColor = "rgb(58, 58, 58)";
+          levelButtonsHTML[i].style.backgroundColor = "#3a3a3a";
         }
         levelButton.removeEventListener("click", handleFlyingRound);
         levelButton.removeEventListener("click", handleRound);
@@ -359,22 +358,16 @@ const handleModeSelect = (event) => {
     } else if (event.target.value == "Flying") {
       levelSelectButtons.forEach((levelButton) => {
         for(let i=0;i<highestAvailableFlyingRounds;i++){
-          levelButtonsHTML[i].style.backgroundColor = "white";
+          levelButtonsHTML[i].style.backgroundColor = "#FDFFBB";
         }
         for(let i=highestAvailableFlyingRounds;i<10;i++){
-          levelButtonsHTML[i].style.backgroundColor = "rgb(58, 58, 58)";
+          levelButtonsHTML[i].style.backgroundColor = "#3a3a3a";
         }
         levelButton.removeEventListener("click", handleFlyingRound);
         levelButton.removeEventListener("click", handleRound);
         levelButton.addEventListener("click", handleFlyingRound);
       });
-    } else if (event.target.value == "Endless") {
-      currentModeTitle.innerHTML = `Current Mode: (Unavailable)`;
-      levelSelectButtons.forEach((levelButton) => {
-        levelButton.removeEventListener("click", handleFlyingRound);
-        levelButton.removeEventListener("click", handleRound);
-      });
-    }
+    } 
   }
 };
 
