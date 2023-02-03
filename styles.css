@@ -7,13 +7,21 @@ html {
 
 body {
   display: grid;
-  grid-template-areas: "title-bar title-bar title-bar" "current-mode gallery gallery";
+  grid-template-areas: "title title title" "title-bar title-bar title-bar" "current-mode gallery gallery";
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 0.1fr 1fr 5fr;
   align-items: center;
   justify-items: center;
   height: 90vh;
   background: linear-gradient(0deg, rgb(238, 150, 23), rgb(254, 88, 88));
+}
+
+.title {
+  grid-area: title;
+  font-size: 50px;
+  font-variant: small-caps;
+  font-weight: 900;
+  text-shadow: rgb(255, 255, 255) 0px 0px 9px;
 }
 
 .title-bar {
@@ -22,7 +30,9 @@ body {
   justify-content: space-evenly;
   align-items: center;
   justify-self: center;
-  min-width: 85%;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 5% 0 5%;
   color: #dcdcdc;
   border: 1px solid black;
   border-radius: 1rem 1rem 0rem 0rem;
@@ -121,12 +131,13 @@ body {
   flex-direction: column;
   height: 90%;
   margin: 10%;
+  justify-content: start;
   align-items: center;
 }
 .current-mode__level-select {
   position: relative;
-  margin-top: 21px;
   height: 100%;
+  width: 100%;
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
@@ -136,6 +147,13 @@ body {
   grid-area: title;
   font-size: larger;
   font-weight: 900;
+  text-shadow: rgb(255, 255, 255) 0px 0px 9px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 11px 0;
+  border-radius: 1rem 1rem 0 0;
 }
 
 .goose {
@@ -163,7 +181,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 50px;
+  font-size: 1rem;
   color: rgb(0, 0, 0);
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -173,15 +191,32 @@ body {
   padding: 10px;
 }
 .overlay__text p {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .overlay__button {
   position: absolute;
-  left: 95%;
+  left: 80%;
+  top: 2%;
   color: rgb(0, 0, 0);
   border: 1px solid black;
   border-radius: 0.5rem;
   background-color: rgba(255, 255, 255, 0);
   padding: 10px;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .title-bar {
+    flex-direction: row;
+  }
+  .overlay__text {
+    font-size: 50px;
+  }
+  .overlay__text p {
+    font-size: 1.2rem;
+  }
+  .overlay__button {
+    top: 2%;
+    left: 95%;
+  }
 }/*# sourceMappingURL=styles.css.map */

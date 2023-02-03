@@ -61,3 +61,30 @@ SCSS
         }
     }
 }
+
+
+
+EasterEgg
+    const helpfulGoose = document.querySelector("#helpful-goose");
+  helpfulGoose.addEventListener("click", handleCheats);
+const handleCheats = () => {
+  if (eggCounter < 20) {
+    console.log(eggCounter)
+    eggCounter++;
+  } else if (eggCounter == 20) {
+    highestAvailableRounds = 10;
+    highestAvailableFlyingRounds = 10;
+    eggCounter++;
+  }
+};
+
+
+const easterAggagaga = () => {
+  if (eggCounter < 10) {
+    eggCounter++;
+  } else if (eggCounter == 10) {
+    body.innerHTML += `<img id="helpful-goose" src="https://media.tenor.com/83-dDMPaR5oAAAAi/goose-duck.gif" alt="Goose"></img>`;
+    eggCounter++;
+  }
+};
+gallery.addEventListener("click", easterAggagaga);

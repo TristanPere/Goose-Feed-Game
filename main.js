@@ -9,7 +9,8 @@ const currentModeTitle = document.querySelector(".current-mode__title");
 const instructionsButton = document.querySelector(".title-bar__intructions");
 const instructionsExitButton = document.querySelector(".overlay__button");
 const instructions = document.querySelector(".overlay");
-const body = document.querySelector("body")
+const title = document.querySelector(".title");
+const body = document.querySelector("body");
 let highestAvailableRounds = 1;
 let highestAvailableFlyingRounds = 1;
 let levelActive = false;
@@ -19,6 +20,25 @@ let gooseDelay = [];
 let roundEnding = [];
 let animation = [];
 let timer = [];
+//
+const flashingTitle = () => {
+  let hue = 0;
+  let hueCount = 0;
+  setInterval(() => {
+    if (Math.floor(hueCount) % 2 == 0) {
+      hueCount += 0.01;
+      hue += 0.01;
+      title.style.textShadow = `rgba(255,255,255,${hue}) 0px 0px 9px`;
+      currentModeTitle.style.textShadow = `rgba(255,255,255,${hue}) 0px 0px 9px`;
+    } else {
+      hueCount += 0.01;
+      hue -= 0.01;
+      title.style.textShadow = `rgba(255,255,255,${hue}) 0px 0px 9px`;
+      currentModeTitle.style.textShadow = `rgba(255,255,255,${hue}) 0px 0px 9px`;
+    }
+  }, 1);
+};
+flashingTitle();
 
 const LevelSelectHTML = (idNum) => {
   const innerHTML = `<div class="level" id="level${idNum}">
@@ -384,4 +404,24 @@ instructionsExitButton.addEventListener("click", () => {
   instructions.style.display = "none";
 });
 
-
+let eggCounter = 0;
+const handleCheats = () => {
+  if (eggCounter < 200) {
+    eggCounter++;
+  } else if (eggCounter == 200) {
+    highestAvailableRounds = 10;
+    highestAvailableFlyingRounds = 10;
+    eggCounter++;
+  }
+};
+const easterAggagaga = () => {
+  if (eggCounter < 100) {
+    eggCounter++;
+  } else if (eggCounter == 100) {
+    gallery.innerHTML += `<img id="helpful-goose" src="https://media.tenor.com/83-dDMPaR5oAAAAi/goose-duck.gif" style="" alt="Goose"></img>`;
+    const helpfulGoose = document.querySelector("#helpful-goose");
+    helpfulGoose.addEventListener("click", handleCheats);
+    eggCounter++;
+  }
+};
+title.addEventListener("click", easterAggagaga);
