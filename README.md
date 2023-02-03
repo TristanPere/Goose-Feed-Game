@@ -29,7 +29,7 @@ Good Luck beating all ten levels!!
 
 
 
-## Calculator's website:
+## Game's website:
 https://tristanpere.github.io/Goose-Feed-Game/
 ## Setup / Installation
  
