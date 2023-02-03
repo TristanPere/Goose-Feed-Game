@@ -324,6 +324,7 @@ const clearAllIntervals = () => {
 const handleRestart = () => {
   highestAvailableRounds = 1;
   highestAvailableFlyingRounds = 1;
+  levelActive = false;
   score.innerText = `Geese Fed:`;
   currentRound.innerHTML = `Current Round:`;
   roundTimer.innerHTML = `Round Timer: 00:00s`;
