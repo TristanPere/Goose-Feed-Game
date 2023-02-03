@@ -1,45 +1,16 @@
 JAVASCRIPT
 
-const endlessRound = document.querySelector("#endless-level");
-
-const handleEndlessRound = () =>{
-  // Endless = Set interval(
-  //   if(miss 5 geese in a row endless ends and highscore is displayed) check is if score < total geese-5
-  //   Clear interval (endless)
-  //   Else {
-  //   Setinterval(()=>{increase round},100)
-  //   Create a goose html, += html into div, ensure it has its own id. 
-  //   Decide to random place it or launch it
-  //   When random place it attach lifetime
-  //   When random launch it attach velocity
-  //   },10)
-    
-  //   Each one will have its own attributes
-  //interval looking for failure check
-    const completionCheck = setInterval(()=>{
-      if(noGeeseMissed > 5){
-        clearInterval(endlessRound)
-        clearInterval(completionCheck)
-      }
-    },10)
-    let currentRound = 1; //starting round
-    const endlessRound = setInterval(()=>{
-      //   Create a goose html
-      hatchGeese([1])//hatches a goose
-      positionGeese()
-      //   Decide to random place it or launch it
-
-    })
-}
-
-else if (event.target.value == "Endless") {
-      currentModeTitle.innerHTML = `Current Mode: (Unavailable)`;
-      levelSelectButtons.forEach((levelButton) => {
-        levelButton.removeEventListener("click", handleFlyingRound);
-        levelButton.removeEventListener("click", handleRound);
-      });
-      }
-
+const endlessRoundButton = document.querySelector("#endless-level");
+let noGeeseMissed = 0;
+const handleEndlessRound = setInterval(()=>{
+  if (levelActive){}
+  else if(!levelActive & currentRound%3==0){
+    handleFlyingRound(currentRound)
+  } else{
+    handleStandardRound(currentRound/3)
+  }
+},10) 
+clearInterval(handleEndlessRound)
 
 HTML
 
@@ -61,30 +32,3 @@ SCSS
         }
     }
 }
-
-
-
-EasterEgg
-    const helpfulGoose = document.querySelector("#helpful-goose");
-  helpfulGoose.addEventListener("click", handleCheats);
-const handleCheats = () => {
-  if (eggCounter < 20) {
-    console.log(eggCounter)
-    eggCounter++;
-  } else if (eggCounter == 20) {
-    highestAvailableRounds = 10;
-    highestAvailableFlyingRounds = 10;
-    eggCounter++;
-  }
-};
-
-
-const easterAggagaga = () => {
-  if (eggCounter < 10) {
-    eggCounter++;
-  } else if (eggCounter == 10) {
-    body.innerHTML += `<img id="helpful-goose" src="https://media.tenor.com/83-dDMPaR5oAAAAi/goose-duck.gif" alt="Goose"></img>`;
-    eggCounter++;
-  }
-};
-gallery.addEventListener("click", easterAggagaga);

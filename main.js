@@ -36,7 +36,7 @@ const flashingTitle = () => {
       title.style.textShadow = `rgba(255,255,255,${hue}) 0px 0px 9px`;
       currentModeTitle.style.textShadow = `rgba(255,255,255,${hue}) 0px 0px 9px`;
     }
-  }, 1);
+  }, 50);
 };
 flashingTitle();
 
@@ -126,7 +126,6 @@ const countDownTimer = (amountOfTime) => {
     clearInterval(timer);
   }, amountOfTime + 1000);
 };
-
 const moveGoose = (goose, vector, id, direction) => {
   //load in goose and its relative vectors [0]=dx,[1]=dy
   let xpos = (gallery.clientWidth - 75) / 2 / vector[0]; //initial position
@@ -158,7 +157,7 @@ const moveGoose = (goose, vector, id, direction) => {
   };
   animation[id] = setInterval(frame, 10);
 };
-// Creates all the necessary details for a round of goose
+// Creates all the necessary details of a round of goose
 const roundDetailsGenerator = (roundNumber) => {
   const roundDetails = {};
   roundDetails.roundNumber = roundNumber;
@@ -174,7 +173,6 @@ const roundDetailsGenerator = (roundNumber) => {
     roundDetails.lifeTime;
   return roundDetails;
 };
-
 const handleFlyingRound = (roundNumber) => {
   levelActive = true;
   const roundDetails = roundDetailsGenerator(roundNumber);
@@ -315,7 +313,6 @@ const handleStandardRound = (roundNumber) => {
     }
   }, roundDetails.roundLength);
 };
-// all functions to occur in a standard round are store in here so can be called when a round button is clicked
 const checkStandardRound = (event) => {
   // packaged handleRestart into handle a round with input of numberOfGeese and round number to determine speed of geese appearing
   if (event.target.value <= highestAvailableRounds) {
@@ -332,7 +329,6 @@ const checkStandardRound = (event) => {
     );
   }
 };
-// all functions to occur in a flying round are store in here so can be called when a round button is clicked
 const clearAllIntervals = () => {
   clearInterval(timer);
   clearInterval(animation);
@@ -356,7 +352,6 @@ const handleRestart = () => {
   instructions.style.display = "block";
   clearAllIntervals();
 };
-
 const handleModeSelect = (event) => {
   if (levelActive) {
     alert("Must complete level before exiting");
@@ -396,14 +391,12 @@ levelSelectButtons.forEach((levelButton) => {
 });
 dropdown.addEventListener("click", handleModeSelect);
 restartButton.addEventListener("click", handleRestart);
-
 instructionsButton.addEventListener("click", () => {
   instructions.style.display = "block";
 });
 instructionsExitButton.addEventListener("click", () => {
   instructions.style.display = "none";
 });
-
 let eggCounter = 0;
 const handleCheats = () => {
   if (eggCounter < 200) {
