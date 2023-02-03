@@ -8,11 +8,11 @@ html {
 body {
   display: grid;
   grid-template-areas: "title title title" "title-bar title-bar title-bar" "current-mode gallery gallery";
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: 0.1fr 1fr 5fr;
   align-items: center;
   justify-items: center;
-  height: 90vh;
+  height: 95vh;
   background: linear-gradient(0deg, rgb(238, 150, 23), rgb(254, 88, 88));
 }
 
@@ -71,9 +71,6 @@ body {
   padding: 0.4rem 1rem;
   text-decoration: none;
   text-shadow: 0px 1px 0px #ffffff;
-  margin-right: 1rem;
-}
-.title-bar__header {
   margin-right: 1rem;
 }
 .title-bar__score {
@@ -181,7 +178,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 900;
   color: rgb(0, 0, 0);
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -192,6 +190,7 @@ body {
 }
 .overlay__text p {
   font-size: 1rem;
+  font-weight: 400;
 }
 .overlay__button {
   position: absolute;
@@ -205,7 +204,7 @@ body {
   cursor: pointer;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 650px) {
   .title-bar {
     flex-direction: row;
   }
@@ -217,6 +216,6 @@ body {
   }
   .overlay__button {
     top: 2%;
-    left: 95%;
+    left: 92%;
   }
 }/*# sourceMappingURL=styles.css.map */

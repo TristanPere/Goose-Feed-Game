@@ -21,12 +21,12 @@ body {
     "title title title"
     "title-bar title-bar title-bar"
     "current-mode gallery gallery";
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   grid-template-rows: 0.1fr 1fr 5fr;
   align-items: center;
   justify-items: center;
   // padding-bottom: 50px;
-  height: 90vh;
+  height: 95vh;
   background: linear-gradient(0deg, rgba(238, 150, 23), rgba(254, 88, 88));
 }
 .title{
@@ -52,7 +52,6 @@ body {
   padding: 5px;
   position: initial;
   font-size: 1rem;
-
   &__intructions {
     box-shadow: inset 0px 1px 0px 0px #ffffff;
     background: $button-background;
@@ -85,9 +84,6 @@ body {
     text-shadow: 0px 1px 0px #ffffff;
     margin-right: 1rem;
   }
-  &__header{
-    margin-right: 1rem;
-  }
   &__score{
     margin-right: 1rem;
   }
@@ -101,6 +97,7 @@ body {
     margin-right: 1rem;
   }
 }
+
 #gamemode-select {
   box-shadow: inset 0px 1px 0px 0px #ffffff;
   background: $button-background;
@@ -181,7 +178,6 @@ body {
   position: absolute;
 }
 
-
 .overlay {
   position: fixed;
   width: 100%;
@@ -196,7 +192,8 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: 900;
     color: rgb(0, 0, 0);
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -206,6 +203,7 @@ body {
     padding: 10px;
     p {
       font-size: 1rem;
+      font-weight: 400;
     }
   }
   &__button {
@@ -220,7 +218,8 @@ body {
     cursor: pointer;
   }
 }
-@media screen and(min-width: 768px){
+
+@media screen and(min-width: 650px){
   .title-bar {
     flex-direction: row;
   }
@@ -233,7 +232,7 @@ body {
   }
   &__button{
     top: 2%;
-    left: 95%;
+    left: 92%;
   }
 }
 }
