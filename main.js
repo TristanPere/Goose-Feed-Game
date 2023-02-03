@@ -13,6 +13,7 @@ const title = document.querySelector(".title");
 const body = document.querySelector("body");
 let highestAvailableRounds = 1;
 let highestAvailableFlyingRounds = 1;
+let eggCounter = 0;
 let levelActive = false;
 let gooseHatchInterval = [];
 let gooseLooseInterval = [];
@@ -397,7 +398,6 @@ instructionsButton.addEventListener("click", () => {
 instructionsExitButton.addEventListener("click", () => {
   instructions.style.display = "none";
 });
-let eggCounter = 0;
 const handleCheats = () => {
   if (eggCounter < 200) {
     eggCounter++;
